@@ -15,12 +15,19 @@ class LoadConfigTest {
 
     @Test
     void populatePropertyData() {
-        fail("Not yet implemented"); //Remove
+    	 Scanner mockScanner = mock(Scanner.class);
+         when(mockScanner.hasNextLine()).thenReturn(true).thenReturn(true).thenReturn(false);
+         loadConfig.setPropertyReader(mockScanner);
+         loadConfig.populatePropertyData();
+         assertEquals(true, loadConfig.propertyData.size() >= 2);
     }
 
 
     @Test
     void getConfig() {
-        fail("Not yet implemented"); //Remove
+    	 Scanner mockScanner = mock(Scanner.class);
+         when(mockScanner.hasNextLine()).thenReturn(true).thenReturn(true).thenReturn(false);
+         loadConfig.setPropertyReader(mockScanner);
+         assertEquals(true, loadConfig.getConfig().size() >= 2);
     }
 }

@@ -59,7 +59,13 @@ class BlackJackTest {
     }
 
     @Test
-    void playHasThreeCards(){
-        fail("Not yet implemented"); //Remove
+    void play(){
+    	ConsoleInput mockConsoleInput = mock(ConsoleInput.class);
+        when(mockConsoleInput.getString()).thenReturn("Twist");
+        when(mockConsoleInput.getInteger()).thenReturn(4);
+        blackJack.setUserInput(mockConsoleInput);
+        blackJack.play();
+        assertEquals(true, blackJack.getDeck().size() <= 49);
+        
     }
 }

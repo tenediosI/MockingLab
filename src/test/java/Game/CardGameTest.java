@@ -7,6 +7,7 @@ import Structure.LoadConfig;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,7 +18,6 @@ import static org.mockito.Mockito.spy;
 
 class CardGameTest {
     CardGame cardGame = new CardGame();
-
     @Test
     void getDeck() {
         assertEquals(52, cardGame.getDeck().size());
@@ -93,37 +93,107 @@ class CardGameTest {
 
     @Test
     void getComputerPlayersNames(){
-        fail("Not yet implemented"); //Remove
+    	List<String> namesList = new ArrayList<String>();
+    	namesList.add("Rob");
+    	namesList.add("Bob");
+    	namesList.add("Andrew");
+    	namesList.add("Paul");
+        LoadConfig mockLoadConfig = mock(LoadConfig.class);
+        when(mockLoadConfig.getConfig()).thenReturn(namesList);
+        cardGame.setLoadConfig(mockLoadConfig);
+        assertEquals(namesList,cardGame.getComputerPlayersNames());
     }
 
     @Test
     void createComputerPlayers(){
-        fail("Not yet implemented"); //Remove
+    	List<String> namesList = new ArrayList<String>();
+    	namesList.add("Rob");
+    	namesList.add("Bob");
+    	namesList.add("Andrew");
+    	namesList.add("Paul");
+    	LoadConfig mockLoadConfig = mock(LoadConfig.class);
+        when(mockLoadConfig.getConfig()).thenReturn(namesList);
+        cardGame.setLoadConfig(mockLoadConfig);
+        cardGame.createComputerPlayers(4);
+        assertEquals("Andrew",cardGame.players.get(2).getName());
     }
 
     @Test
     void createComputerPlayersSize(){
-        fail("Not yet implemented"); //Remove
+    	List<String> namesList = new ArrayList<String>();
+    	namesList.add("Rob");
+    	namesList.add("Bob");
+    	namesList.add("Andrew");
+    	namesList.add("Paul");
+    	LoadConfig mockLoadConfig = mock(LoadConfig.class);
+        when(mockLoadConfig.getConfig()).thenReturn(namesList);
+        cardGame.setLoadConfig(mockLoadConfig);
+        cardGame.createComputerPlayers(4);
+        assertEquals(4,cardGame.getNumberOfPlayers());
     }
 
     @Test
     void createHumanPlayer(){
-        fail("Not yet implemented"); //Remove
+        ConsoleInput mockConsoleInput = mock(ConsoleInput.class);
+        when(mockConsoleInput.getString()).thenReturn("Rob");
+        cardGame.setUserInput(mockConsoleInput);
+        cardGame.createHumanPlayer();
+        assertEquals("Rob",cardGame.players.get(0).getName());
     }
 
     @Test
     void initiatePlayers(){
-        fail("Not yet implemented"); //Remove
+    	List<String> namesList = new ArrayList<String>();
+    	namesList.add("Rob");
+    	namesList.add("Bob");
+    	namesList.add("Andrew");
+    	namesList.add("Paul");
+    	LoadConfig mockLoadConfig = mock(LoadConfig.class);
+        when(mockLoadConfig.getConfig()).thenReturn(namesList);
+        ConsoleInput mockConsoleInput = mock(ConsoleInput.class);
+        when(mockConsoleInput.getString()).thenReturn("Andrew");
+        when(mockConsoleInput.getInteger()).thenReturn(5);
+        cardGame.setLoadConfig(mockLoadConfig);
+        cardGame.setUserInput(mockConsoleInput);
+        cardGame.initiate();
+        assertEquals(5,cardGame.players.size());
     }
 
     @Test
     void initiate(){
-        fail("Not yet implemented"); //Remove
+    	List<String> namesList = new ArrayList<String>();
+    	namesList.add("Rob");
+    	namesList.add("Bob");
+    	namesList.add("Andrew");
+    	namesList.add("Paul");
+    	LoadConfig mockLoadConfig = mock(LoadConfig.class);
+        when(mockLoadConfig.getConfig()).thenReturn(namesList);
+        ConsoleInput mockConsoleInput = mock(ConsoleInput.class);
+        when(mockConsoleInput.getString()).thenReturn("Andrew");
+        when(mockConsoleInput.getInteger()).thenReturn(5);
+        cardGame.setLoadConfig(mockLoadConfig);
+        cardGame.setUserInput(mockConsoleInput);
+        cardGame.initiate();
+        assertEquals(true,cardGame.players.get(2).hasHand());
     }
 
     @Test
     void play(){
-        fail("Not yet implemented"); //Remove
+    	List<String> namesList = new ArrayList<String>();
+    	namesList.add("Rob");
+    	namesList.add("Bob");
+    	namesList.add("Andrew");
+    	namesList.add("Paul");
+    	LoadConfig mockLoadConfig = mock(LoadConfig.class);
+        when(mockLoadConfig.getConfig()).thenReturn(namesList);
+        ConsoleInput mockConsoleInput = mock(ConsoleInput.class);
+        when(mockConsoleInput.getString()).thenReturn("Andrew");
+        when(mockConsoleInput.getInteger()).thenReturn(5);
+        cardGame.setLoadConfig(mockLoadConfig);
+        cardGame.setUserInput(mockConsoleInput);
+        cardGame.setFinishGame(true);
+        cardGame.play();
+        assertEquals(true,cardGame.finshGame);
     }
 
 }
